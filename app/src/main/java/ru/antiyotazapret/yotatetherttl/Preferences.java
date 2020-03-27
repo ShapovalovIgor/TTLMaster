@@ -90,13 +90,22 @@ public interface Preferences {
     boolean ignoreIptables();
 
     /**
-     * Игорирование  iptables.
+     * Исправление входящего ttl.
      *
-     * @return {@code true} если нужно игнорировать
+     * @return {@code true} если нужно исправлять
      */
     @KeyByResource(R.string.prefs_general_fixInputTtl_key)
     @DefaultValue(R.bool.prefs_general_fixInputTtl_default)
     boolean fixInputTtl();
+
+    /**
+     * Заворот трафика точки доступа в впн донора.
+     *
+     * @return {@code true} если нужно завернуть в vpn
+     */
+    @KeyByResource(R.string.prefs_general_trafficInVpn_key)
+    @DefaultValue(R.bool.prefs_general_trafficInVpn_default)
+    boolean trafficInVpn();
 
     /**
      * URL списка блокировки

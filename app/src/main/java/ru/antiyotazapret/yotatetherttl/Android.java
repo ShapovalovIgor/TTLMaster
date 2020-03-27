@@ -79,6 +79,17 @@ public class Android {
         executor.executeAsRoot("iptables -t mangle -I PREROUTING -j TTL --ttl-inc 1");
     }
 
+    public static void forceTrafficInVpn() throws  IOException, InterruptedException {
+        executor.executeAsRoot("iptables -t filter -F FORWARD\n" +
+                "iptables -t nat -F POSTROUTING\n" +
+                "iptables -t filter -I FORWARD -j ACCEPT\n" +
+                "iptables -t nat -I POSTROUTING -j MASQUERADE\n" +
+                "ip rule add from 192.168.43.0/24 lookup 61\n" +
+                "ip route add default dev tun0 scope link table 61\n" +
+                "ip route add 192.168.43.0/24 dev ap0 scope link table 61\n" +
+                "ip route add broadcast 255.255.255.255 dev ap0 scope link table 61");
+    }
+
     public static boolean isTtlForced() throws IOException, InterruptedException {
         return executor.executeAsRoot("(iptables -t mangle -L | grep -q 'TTL set to 64' && echo ok)")
                 .getOutput().startsWith("ok");

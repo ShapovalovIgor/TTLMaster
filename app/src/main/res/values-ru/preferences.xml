@@ -27,6 +27,9 @@
     <string name="prefs_general_fixInputTtl_title">Зафиксировать входящий ttl</string>
     <string name="prefs_general_fixInputTtl_summary">Если оператор отправляет TTL=1 то данная опция это исправит</string>
 
+    <string name="prefs_general_trafficInVpn_title">Wrap traffic in vpn</string>
+    <string name="prefs_general_trafficInVpn_summary">Заворот трафика точки доступа в vpn донора</string>
+
     <string name="prefs_boot_title">Автозапуск</string>
 
     <string name="prefs_boot_autoStart_title">Автозапуск</string>
